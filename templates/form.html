@@ -1,0 +1,40 @@
+{% extends 'body.html' %} {% block content %}
+<form method="post" action=".">
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">{{ title }}</h3>
+    </div>
+    <!-- card-header -->
+    <div class="card-body">
+      {% csrf_token %}
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+        <label for="email">{{field.label}}: </label>
+        {{field}}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary btn-flat btnTest">
+        <i class="fa-solid fa-circle-plus"></i> Guardar
+      </button>
+    </div>
+  </div>
+</form>
+<script>
+/*Ver el error en el formulario */
+    {% if form.errors %}
+      var errors = '';
+      {% for field in form %}
+        {% for error in field.errors %}
+              errors+='{{error}}\n'
+    {% endfor %}
+    {% endfor %}
+    Swal.fire({
+    title: 'Error!',
+    text: errors,
+    icon: 'error',
+  });
+  {% endif %}
+</script>
+{% endblock %}

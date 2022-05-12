@@ -1,0 +1,25 @@
+{% extends 'list.html' %} 
+{% block columns %} 
+<tr>
+  <th scope="col">ID</th>
+  <th scope="col">NAME</th>
+  <th scope="col">OPCIONES</th>
+</tr>
+{% endblock %}
+{% block rows %}
+<!-- FUnciones  for c in categories  -->
+{% for c in object_list %}
+        <tr>
+          <td>{{c.id}}</td>
+          <td>{{c.name}}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-xs">
+              <i class="fa-solid fa-trash-arrow-up"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-xs">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </td>
+        </tr>
+        {%endfor%}
+{% endblock %}
